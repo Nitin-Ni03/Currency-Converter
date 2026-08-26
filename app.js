@@ -7,16 +7,22 @@ const fromCurr = document.querySelector(".from select");
 const toCurr = document.querySelector(".to select");
 const msg = document.querySelector(".msg");
 const swapIcon = document.querySelector(".swap-icon-container");
+const amountInput = document.querySelector(".amount input");
+const form = document.querySelector("form");
 
-for (let select of dropdowns) {
-  for (currCode in countryList) {
-    let newOption = document.createElement("option");
+swapIcon.setAttribute("role", "button");
+swapIcon.setAttribute("tabindex", "0");
+swapIcon.setAttribute("aria-label", "Swap currencies");
+
+for (const select of dropdowns) {
+  for (const currCode in countryList) {
+    const newOption = document.createElement("option");
     newOption.innerText = currCode;
     newOption.value = currCode;
     if (select.name === "from" && currCode === "USD") {
-      newOption.selected = "selected";
+      newOption.selected = true;
     } else if (select.name === "to" && currCode === "INR") {
-      newOption.selected = "selected";
+      newOption.selected = true;
     }
     select.append(newOption);
   }
@@ -27,19 +33,32 @@ for (let select of dropdowns) {
 }
 
 const updateExchangeRate = async () => {
-  let amount = document.querySelector(".amount input");
-  let amtVal = amount.value;
-  if (amtVal === "" || amtVal < 1) {
-    amtVal = 1;
-    amount.value = "1";
+  const amount = Number(amountInput.value);
+  if (!Number.isFinite(amount) || amount <= 0) {
+    msg.innerText = "Enter an amount greater than 0.";
+    amountInput.focus();
+    return;
   }
-  const URL = `${BASE_URL}/${fromCurr.value.toLowerCase()}.json`;
-  let response = await fetch(URL);
-  let data = await response.json();
-  let rate = data[fromCurr.value.toLowerCase()][toCurr.value.toLowerCase()];
 
-  let finalAmount = amtVal * rate;
-  msg.innerText = `${amtVal} ${fromCurr.value} = ${finalAmount.toFixed(2)} ${toCurr.value}`;
+  msg.innerText = "Loading exchange rate...";
+  btn.disabled = true;
+  try {
+    let rate = 1;
+    if (fromCurr.value !== toCurr.value) {
+      const url = `${BASE_URL}/${fromCurr.value.toLowerCase()}.json`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`Currency API returned ${response.status}`);
+      const data = await response.json();
+      rate = data[fromCurr.value.toLowerCase()]?.[toCurr.value.toLowerCase()];
+      if (!Number.isFinite(rate)) throw new Error("Exchange rate is unavailable");
+    }
+    msg.innerText = `${amount} ${fromCurr.value} = ${(amount * rate).toFixed(2)} ${toCurr.value}`;
+  } catch (error) {
+    msg.innerText = "Unable to load the exchange rate. Please try again.";
+    console.error(error);
+  } finally {
+    btn.disabled = false;
+  }
 };
 
 const updateFlag = (element) => {
@@ -50,7 +69,7 @@ const updateFlag = (element) => {
   img.src = newSrc;
 };
 
-btn.addEventListener("click", (evt) => {
+form.addEventListener("submit", (evt) => {
   evt.preventDefault();
   updateExchangeRate();
 });
@@ -66,4 +85,11 @@ swapIcon.addEventListener("click", () => {
 
 window.addEventListener("load", () => {
   updateExchangeRate();
+});
+
+swapIcon.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    swapIcon.click();
+  }
 });
