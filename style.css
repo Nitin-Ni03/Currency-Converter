@@ -132,6 +132,11 @@ form input:focus {
   transform: rotate(180deg);
 }
 
+.swap-icon-container:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
 .swap-icon {
   font-size: 0.875rem;
   color: var(--text-secondary);
@@ -209,6 +214,11 @@ form input:focus {
 
 .convert-btn:hover {
   background: var(--primary-hover);
+}
+
+.convert-btn:disabled {
+  cursor: wait;
+  opacity: 0.7;
 }
 
 .convert-btn:active {

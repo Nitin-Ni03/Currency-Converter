@@ -25,16 +25,16 @@
       </div>
       <form>
         <div class="amount input-group">
-          <label>Amount</label>
+          <label for="amount">Amount</label>
           <div class="input-wrapper">
-            <input value="1" type="number" min="1" step="any" />
+            <input id="amount" value="1" type="number" min="0" step="any" inputmode="decimal" required />
           </div>
         </div>
         <div class="dropdown">
           <div class="from input-group">
             <label>From</label>
             <div class="select-container">
-              <img src="https://flagsapi.com/US/flat/64.png" alt="Country Flag" loading="lazy" />
+              <img src="https://flagsapi.com/US/flat/64.png" alt="US flag" loading="lazy" />
               <select name="from"></select>
             </div>
           </div>
@@ -44,7 +44,7 @@
           <div class="to input-group">
             <label>To</label>
             <div class="select-container">
-              <img src="https://flagsapi.com/IN/flat/64.png" alt="Country Flag" loading="lazy" />
+              <img src="https://flagsapi.com/IN/flat/64.png" alt="India flag" loading="lazy" />
               <select name="to"></select>
             </div>
           </div>
