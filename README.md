@@ -1,116 +1,169 @@
-# Currency Converter
+# 💱 Currency Converter
 
-A lightweight web-based currency converter built with HTML, CSS, and JavaScript.
+<div align="center">
 
-## Overview
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
 
-This project provides a simple and polished currency conversion tool that lets users:
+**A sleek, modern, web-based currency converter featuring real-time exchange rates, dynamic country flags, and a premium glassmorphic interface.**
 
-- enter an amount
-- choose a source currency and a target currency
-- view the converted amount with current exchange rates
-- swap the selected currencies instantly
+[Features](#-features) • [Live Demo](#-live-demo) • [Getting Started](#-getting-started) • [Architecture](#-architecture) • [API Reference](#-api-reference)
 
-It uses a public currency API for live exchange rates and displays country flags for the selected currencies.
+</div>
 
-## Files
+---
 
-- `index.html` - page structure and layout
-- `style.css` - responsive styling and UI design
-- `code.js` - currency list and flag mapping logic
-- `app.js` - API calls, user interaction, conversion calculation, and swap behavior
+## 🌟 Overview
 
-## Technical Stack
+**Currency Converter** is a lightweight, high-performance web application that delivers instant, accurate currency conversions across 150+ global currencies. Built with pure Vanilla JavaScript, modern HTML5, and responsive CSS with a modern frosted glass aesthetic, it offers real-time exchange rates without requiring API keys or heavy dependencies.
 
-- **Frontend:** HTML5, CSS3, Vanilla JavaScript (ES6+)
-- **API:** Fawaz Ahmed's Currency API (CDN via jsdelivr)
-- **Flags:** FlagsAPI.com for country flags
-- **Styling:** Custom CSS with responsive design and animations
-- **Architecture:** MVC-inspired pattern with separation of concerns
+---
 
-## Features
+## ✨ Features
 
-- Real-time currency conversion using `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api`
-- Currency selection dropdowns preloaded with global currency codes
-- Country flags shown for both "From" and "To" currencies
-- Input validation to ensure the amount is at least `1`
-- Swap button to quickly reverse conversion direction
-- Fully responsive design that works on desktop, tablet, and mobile devices
-- Smooth animations and transitions for better user experience
+- ⚡ **Real-Time Exchange Rates** — Fetches live rates directly from CDN-backed currency endpoints for maximum reliability and speed.
+- 🌍 **150+ Currencies Supported** — Preloaded with global ISO-4217 currency codes covering world economies.
+- 🏳️ **Dynamic Country Flags** — Automatically renders high-quality country flags matching selected currencies via FlagsAPI.
+- 🔄 **One-Click Currency Swap** — Instant 180° animated currency swap with full keyboard accessibility (`Enter` / `Space`).
+- 🎨 **Modern Glassmorphism UI** — Contemporary frosted glass container, vibrant indigo-to-purple gradients, ambient backdrop glow, and interactive micro-animations.
+- 📱 **Fully Responsive Design** — Fluid layout tailored for seamless experiences across mobile, tablet, and desktop viewports.
+- ♿ **Accessible & Intuitive** — Clean semantic markup, ARIA roles, labeled inputs, and focus indicators.
+- 🛡️ **Zero Dependencies** — Built completely with vanilla web standards (No Node, Webpack, or framework overhead required).
 
-## How It Works
+---
 
-### Architecture & Design
+## 📸 Interface Preview
 
-The application follows a clean separation of concerns:
+```text
++-------------------------------------------------------+
+|                 💱 Currency Converter                 |
+|                                                       |
+|  AMOUNT                                               |
+|  [ 100                                              ] |
+|                                                       |
+|  FROM                     SWAP              TO        |
+|  [ 🇺🇸 USD  v ]          ( ⇄ )          [ 🇮🇳 INR  v ] |
+|                                                       |
+|  +-------------------------------------------------+  |
+|  |           100 USD = 8,350.00 INR                |  |
+|  +-------------------------------------------------+  |
+|                                                       |
+|  [         Get Exchange Rate          -> ]            |
++-------------------------------------------------------+
+```
 
-1. **HTML Structure (index.html)**
-   - Semantic HTML5 markup for accessibility
-   - Dropdowns for currency selection
-   - Input field for amount entry
-   - Display area for conversion results and exchange rate information
+---
 
-2. **Styling (style.css)**
-   - Flexbox layout for responsive design
-   - CSS Grid for component organization
-   - Smooth transitions and hover effects
-   - Color scheme optimized for readability
-   - Mobile-first responsive approach with media queries
+## 📁 Project Structure
 
-3. **Data & Mapping (code.js)**
-   - Pre-loaded list of all supported currencies with ISO codes
-   - Currency-to-country-flag mapping for visual display
-   - Lookup tables for quick currency/flag resolution
-   - No external dependencies required
+```bash
+currency_conv/
+├── index.html        # Semantic HTML5 structure and layout
+├── style.css         # Modern glassmorphism CSS design system & responsiveness
+├── app.js            # Core application logic, API calls, event handlers, and calculations
+├── code.js           # Comprehensive ISO currency list & country code mappings
+├── bg.png            # Ambient backdrop wallpaper asset
+└── README.md         # Documentation and project guide
+```
 
-4. **Application Logic (app.js)**
-   - Event listeners for user interactions (input, dropdown changes, button clicks)
-   - API calls to fetch real-time exchange rates
-   - Conversion calculation and result formatting
-   - Currency swap functionality with UI updates
-   - Error handling and validation
+---
 
-### Conversion Flow
+## 🚀 Getting Started
 
-1. User enters an amount and selects source/target currencies
-2. Clicking "Get Exchange Rate" triggers an API call to fetch current rates
-3. Exchange rate data is received in JSON format with rates for all currency pairs
-4. JavaScript calculates the conversion: `amount × exchange_rate`
-5. Result is displayed with both the final amount and the exchange rate
-6. Swap button instantly reverses the conversion direction and updates display
+### Prerequisites
 
-## Usage
+All you need is any modern web browser (Google Chrome, Mozilla Firefox, Microsoft Edge, Safari, or Brave).
 
-1. Open `index.html` in a web browser.
-2. Enter an amount in the "Amount" field.
-3. Select the source currency and the target currency.
-4. Click "Get Exchange Rate" to see the result.
-5. Click the swap icon to reverse the selected currencies.
+### Installation & Run
 
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/Nitin-Ni03/Currency-Converter.git
+   ```
 
-**Endpoint:** `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api`
+2. **Navigate into the project directory:**
+   ```bash
+   cd Currency-Converter
+   ```
 
-The app uses the Fawaz Ahmed's Currency API to fetch real-time exchange rates.
-- **Format:** The API provides exchange rates in JSON format
-- **Currency Codes:** Supports all standard ISO 4217 currency codes (e.g., USD, EUR, GBP, INR)
-- **Response Structure:** Exchange rates are organized by date and currency pairs
-- **No Authentication:** The public API requires no authentication or API key
-- **Rate Limiting:** Best efforts to handle public rate limits; ensure reasonable usage
+3. **Launch the application:**
+   - **Direct Browser:** Simply double-click `index.html` to open it in your browser.
+   - **VS Code Live Server:** Right-click `index.html` and select **"Open with Live Server"**.
+   - **Python Simple Server (Optional):**
+     ```bash
+     python -m http.server 3000
+     ```
+     Then open `http://localhost:3000` in your browser.
 
-### Flags API
-**Endpoint:** `https://flagsapi.com`
+---
 
-Displays country flags corresponding to the selected currencies.
-- **Flag Format:** SVG flags for modern browsers and optimal display
-- **Usage:** Flags are dynamically loaded based on currency code (e.g., `/us.svg` for USD)
-- **Size:** Flags scale responsively with the UI
+## 🧠 Architecture & Conversion Flow
 
-## Notes
+The application follows a clean separation of concerns and a declarative event-driven architecture:
 
-- The app loads exchange rates from the external currency API and requires an internet connection.
-- Flags are loaded from `https://flagsapi.com`.
-- Both APIs are publicly available and free to use with reasonable usage patterns.
+```mermaid
+flowchart TD
+    A[User Enters Amount] --> B[User Selects Currencies / Clicks Swap]
+    B --> C[updateFlag triggers: Updates Country Flags]
+    C --> D[Click 'Get Exchange Rate' / Form Submit]
+    D --> E[Fetch Live Rates from Currency API CDN]
+    E -->|JSON Response| F[Calculate: Amount × Target Rate]
+    F --> G[Render Formatted Result in UI]
+    E -->|Network Error| H[Display User-Friendly Error Message]
+```
 
-## License
+### Conversion Logic Breakdown:
+1. **User Input:** Enter an amount (validated to ensure `amount > 0`).
+2. **Currency Resolution:** Identifies base currency code and target currency code.
+3. **API Fetch:** Performs a fast `GET` request to `@fawazahmed0/currency-api` for the base currency JSON dataset.
+4. **Calculation:** Computes `amount × rate` and formats output to two decimal places.
+5. **State Synchronization:** The swap button instantly toggles source and destination values, re-renders flags, and recalculates the exchange rate.
 
-This project is provided as-is for learning and demonstration purposes.
+---
+
+## 🌐 API & External Services
+
+| Service | Provider / Endpoint | Purpose | Authentication |
+| :--- | :--- | :--- | :--- |
+| **Exchange Rate API** | `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/{code}.json` | Real-time global currency exchange rates | None (Free & Open CDN) |
+| **Flags API** | `https://flagsapi.com/{country_code}/flat/64.png` | Country flag icons for selected currencies | None (Free public service) |
+| **Google Fonts** | `https://fonts.googleapis.com/css2?family=Outfit` | Modern typography ('Outfit') | None |
+| **Font Awesome** | `https://cdnjs.cloudflare.com/ajax/libs/font-awesome` | Icons for wallet, swap, and buttons | None |
+
+---
+
+## 🎨 Design System
+
+- **Design Philosophy:** Modern Glassmorphism with layered depth and high contrast.
+- **Color Palette:**
+  - Primary Gradient: `linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #7c3aed 100%)`
+  - Slate Dark Backdrop: `#0b0f19` with ambient radial glows
+  - Frosted Card Surface: `rgba(255, 255, 255, 0.92)` with `backdrop-filter: blur(20px)`
+  - Active & Focus States: Glowing focus rings (`rgba(99, 102, 241, 0.18)`)
+- **Typography:** `Outfit` (sans-serif), responsive sizing, weighted hierarchy.
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**. See `LICENSE` for more information.
+
+---
+
+<div align="center">
+Made with ❤️ by <a href="https://github.com/Nitin-Ni03">Nitin</a>
+</div>
